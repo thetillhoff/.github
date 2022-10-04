@@ -56,7 +56,7 @@ jobs:
       - name: Set golang version
         uses: actions/setup-go@v3
         with:
-          go-version-file: 'path/to/go.mod'
+          go-version-file: 'go.mod'
 
       - name: Compile binary by defined matrix
         shell: bash
