@@ -1,30 +1,9 @@
-# Only here for backwards compatibility
-name: Release Golang executable on tag
+name: Tagged Golang build
 
 on:
   workflow_call:
 
 jobs:
-  prerequisites:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          ref: main
-
-      - name: Check whether elements exist for the current release-tag in CHANGELOG.md
-        shell: bash
-        run: |
-          grep "${{ github.ref_name }}" CHANGELOG.md
-
-      - name: Delete version-tag when CHANGELOG.md doesn't contain information about it
-        if: failure()
-        shell: bash
-        run: |
-          git config --global user.name 'GithubActions'
-          git config --global user.email 'githubactions@users.noreply.github.com'
-          git push --delete origin ${{ github.ref_name }}
 
   build:
     needs: prerequisites

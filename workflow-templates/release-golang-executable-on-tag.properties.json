@@ -1,7 +1,0 @@
-{
-  "name": "Release Golang executable on tag",
-  "description": "This workflow automatically builds your Golang executable cross-platform as soon as you push a git tag that fits the semantic versioning schema with `v` prefix (f.e. `v1.2.3`).",
-  "categories": [
-    "Go"
-  ]
-}

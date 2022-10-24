@@ -1,0 +1,31 @@
+name: Tagged docker build and push
+
+on:
+  workflow_call:
+
+jobs:
+  build-and-push:
+    name: Build tagged docker image and push to container registry
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: main
+
+      - name: Build the tagged Docker image
+        shell: bash
+        run: |
+          docker build . -t ghcr.io/${{ github.repository }}:${{ github.ref_name }}
+          docker tag ghcr.io/${{ github.repository }}:${{ github.ref_name }} ghcr.io/${{ github.repository }}:latest
+      - name: Log into container registry
+        shell: bash
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io --username ${{ github.repository_owner }} --password-stdin
+      - name: Push the tagged Docker image
+        shell: bash
+        run: |
+          docker push --all-tags ghcr.io/${{ github.repository }}
+      - name: Log out of container registry
+        shell: bash
+        run: |
+          docker logout
