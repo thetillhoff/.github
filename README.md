@@ -22,6 +22,16 @@ jobs:
     #uses: thetillhoff/.github/.github/workflows/release-on-tag-docker-build.yaml@main
 ```
 
+## Example installation instructions
+
+```sh
+wget https://github.com/thetillhoff/temingo/releases/download/v0.1.0/temingo_linux_amd64
+wget https://github.com/thetillhoff/temingo/releases/download/v0.1.0/temingo_linux_amd64.sha256
+sha256sum -c temingo_linux_amd64.sha256
+sudo install temingo_linux_amd64 /usr/local/bin/temingo # automatically sets rwxr-xr-x permissions
+rm temingo_linux_amd64 temingo_linux_amd64.sha256
+```
+
 ## Action `changelog-prerequisite`
 This workflow checks if the `./CHANGELOG.md` contains an entry for the specified tag.
 
