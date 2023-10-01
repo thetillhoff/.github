@@ -88,7 +88,7 @@ jobs:
           ref: main
 
       - name: Download all artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
 
       - name: Move all artifacts to the current directory
         shell: bash
