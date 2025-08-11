@@ -8,7 +8,7 @@ jobs:
     name: Build tagged docker image and push to container registry
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: main
 
